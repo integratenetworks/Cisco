@@ -3,6 +3,10 @@ This post provides some guidelines in securing an IPSec VPN on a Cisco IOS-XE ro
 
 ## Disable default crypto policies/proposals
 As default Cisco IOS-XE routes come with default crypto IKEv1/ISAKMP policies, IKEv2 Proposals and IPSec Transform Sets to aid the deployment of a VPN, on old software versions these crypto ciphers are now considered weak and insecure. An administrator should disable the default settings and define new settings using only the strongest crypto ciphers. Leaving the default ISAKMP/IKE and IPsec policies enabled creates a vulnerability known as a downgrade attack, where a malicious user only offers weak cryptography suites and forces the VPN endpoints to negotiate non-compliant cryptography suites.
+
+<p align="center">
+  <img src="flexvpn-securing-proposals.png" alt="Proposals">
+</p>
  
 The default crypto settings can easily be disabled using the following commands:  
 ```ruby
