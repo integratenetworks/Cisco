@@ -39,6 +39,9 @@ crypto ipsec profile IPSEC-PROFILE
  set security-association lifetime seconds 28800
  set security-association lifetime kilobytes disable
 ```
+<p align="center">
+  <img src="Flexvpn-securing-lifetime1.png" alt="Lifetime1">
+</p>
 
 The default IKEv2 SA lifetime is 86400 and is not displayed in the running-configuration, to reduce to a short lifetime this can be configured under the IKEv2 Profile, example below.
 ```ruby
