@@ -29,13 +29,6 @@ crypto ikev2 policy IKEV2-POLICY
 !
 crypto transform-set TSET esp-gcm 256
 ```
-
-## Authentication
-Certificates should be used for mutual authentication between peers where possible, Pre-Shared Keys (PSKs) by exception. Refer to the previous posts below for configuration of certificate authentication on IOS routers.
-
-FlexVPN certificate authentication  
-IOS-XE SCEP/Manual enrollment
-
 ## Key Lifetimes
 Use the recommended key lifetimes, for IKE SA of 86400 seconds/1 day (default) and for Child SA/IPSec SA 28800 seconds/8 hours, Cisco also recommends to also disable SA lifetime based on kilobytes transmitted (relying only on the lifetime in seconds). Below is an example of the Child SA/IPSec SA lifetime configuration.
 ```ruby
@@ -44,14 +37,17 @@ crypto ipsec profile IPSEC-PROFILE
  set security-association lifetime kilobytes disable
 ```
 <p align="center">
-  <img src="IOS-XE/FlexVPN/Securing VPNs/flexvpn-securing-lifetime1.png" alt="Lifetime1">
+  <img src="flexvpn-securing-lifetime1.png" alt="lifetime1">
 </p>
 
 The default IKEv2 SA lifetime is 86400 and is not displayed in the running-configuration, to reduce to a short lifetime this can be configured under the IKEv2 Profile, example below.
 ```ruby
 crypto ikev2 profile IKEV2-PROFILE
  lifetime <value>
-``` 
+```
+<p align="center">
+  <img src="flexvpn-securing-lifetime2.png" alt="lifetime2">
+</p>
 ## Mitigate DoS attacks
 When using FlexVPN the IKEv2 Cookie Challenge is used to mitigate against DoS attacks. When a VPN responder detects a large number of half-open IKE SAs to replies with a stateless cookie and only when the initiator relects the cookie back does it proceed with the IKEv2 negotiation.
 ```ruby
