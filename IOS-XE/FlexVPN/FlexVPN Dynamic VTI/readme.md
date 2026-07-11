@@ -1,6 +1,8 @@
 # Cisco FlexVPN Dynamic VTI (Hub-and-Spoke)
 In a FlexVPN Hub and Spoke design spoke routers are configured with a normal static VTI with the tunnel destination of the Hub’s IP address, the Hub however is configured with a Dynamic VTI. The DVTI on the Hub router is not configured with a static mapping to the peer’s IP address. The VTI on the Hub is created dynamically from a preconfigured tunnel template “virtual-template” when a tunnel is initiated by the spoke router/peer. The dynamic tunnel spawns a separate “virtual-access” interface for each spoke tunnel, inheriting the configuration from the cloned the template.
- 
+<p align="center">
+  <img src="flexvpn-dvti-1.png" alt="Spoke IKEv2 routes">
+</p>
 
 ## Configuration
 
@@ -109,10 +111,16 @@ interface tunnel0
 ```
 # Verify
 Use the command “show ip interface brief” to display that a virtual-access interface has been created.
- 
+<p align="center">
+  <img src="flexvpn-dvti-2.png" alt="Spoke IKEv2 routes">
+</p> 
 Using the command “show crypto ikev2 sa detailed” you can verify the IKEv2 SA was established correct with the peer
- 
+<p align="center">
+  <img src="flexvpn-dvti-3.png" alt="Spoke IKEv2 routes">
+</p>
 Use the “show crypto ipsec sa” command to configure the IPSec tunnel is UP and passing traffic. Each IPSec SA will identify the Virtual-Access interface associated with the remote ID of the peer.
- 
+<p align="center">
+  <img src="flexvpn-dvti-4.png" alt="Spoke IKEv2 routes">
+</p> 
 
 
