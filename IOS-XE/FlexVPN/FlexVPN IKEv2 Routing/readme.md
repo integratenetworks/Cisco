@@ -79,17 +79,23 @@ crypto ikev2 profile IKEV2_PROFILE
 ## Verification
 The routing table of the Hub router reveals that the subnets configured in the Authorization Policy (IKEV2_AUTHZ) are learnt from EIGRP. There are other routes learnt from EIGRP, but these are not defined in the Authorization Policy.
   
-Run the command show crypto ikev2 sa detailed on the spoke router, notice the section Remote subnets: this list only the subnets learnt via IKEv2 for that peer.
+Run the command **show crypto ikev2 sa detailed** on the _spoke router_, notice the section Remote subnets: this list only the subnets learnt via IKEv2 for that peer.
 
+<p align="center">
+  <img src="flexvpn-ikev2-1.png" alt="Spoke IKEv2 routes">
+</p>
 
-
-Run the command show crypto ikev2 sa detailed on the Hub router and you will also see the IKEv2 routes learnt from the spoke peer route.
+Run the command show crypto ikev2 sa detailed on the _Hub router_ and you will also see the IKEv2 routes learnt from the spoke peer route.
   
- 
+<p align="center">
+  <img src="flexvpn-ikev2-2.png" alt="Hub IKEv2 routes">
+</p> 
   
 Running the command show ip route will confirm the routes in the Hub's routing table, with the next hop interface as the dynamically created virtual-access interface of the spoke peer.
   
- 
+<p align="center">
+  <img src="flexvpn-ikev2-3.png" alt="Routes">
+</p> 
   
 If additional routes need to be advertised then either the SA's on the receiving route need to be cleared using the command clear crypto session or you must wait until the SA lifetime expires and renegotiated.
 
