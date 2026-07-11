@@ -48,6 +48,7 @@ crypto ikev2 profile IKEV2-PROFILE
 <p align="center">
   <img src="flexvpn-securing-lifetime2.png" alt="lifetime2">
 </p>
+
 ## Mitigate DoS attacks
 When using FlexVPN the IKEv2 Cookie Challenge is used to mitigate against DoS attacks. When a VPN responder detects a large number of half-open IKE SAs to replies with a stateless cookie and only when the initiator relects the cookie back does it proceed with the IKEv2 negotiation.
 ```ruby
